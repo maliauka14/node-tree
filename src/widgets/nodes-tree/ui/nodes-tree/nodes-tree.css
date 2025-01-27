@@ -1,0 +1,30 @@
+.nodes-tree {
+  width: 720px;
+  margin: 0 auto;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nodes-tree__content {
+  flex: 1;
+}
+
+.nodes-tree__content_empty {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.nodes-tree__empty-mark {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nodes-tree__title {
+  flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

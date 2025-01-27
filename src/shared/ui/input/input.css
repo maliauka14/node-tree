@@ -1,0 +1,20 @@
+.input {
+  padding: 8px 16px;
+  line-height: 16px;
+  border: 1px solid var(--border-color);
+  color: var(--color);
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.input__text {
+  font-size: 14px;
+  line-height: 21px;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.input:focus {
+  outline: none;
+}

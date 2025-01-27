@@ -1,0 +1,17 @@
+.custom-node {
+  width: 100%;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.custom-node__actions {
+  display: none;
+}
+
+.custom-node:hover .custom-node__actions,
+.custom-node_selected .custom-node__actions {
+  display: flex;
+  gap: 4px;
+}

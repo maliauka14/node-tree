@@ -1,0 +1,15 @@
+.modals__open-button {
+  width: 20px;
+  height: 20px;
+  color: var(--highlight-color)
+}
+
+.delete-node__alert {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+
+.delete-node__button {
+  background-color: var(--error-color);
+}
