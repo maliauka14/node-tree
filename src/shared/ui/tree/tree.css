@@ -9,7 +9,7 @@
 }
 
 .tree ul {
-  padding-inline-start: 12px;
+  padding-left: 24px;
 }
 
 .tree__node {
@@ -22,19 +22,23 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px 6px 4px;
+  padding-left: 4px;
 }
 
-.tree__node-content:hover {
-  background-color: var(--hover-color);
-  border-radius: 4px
+@media (hover: hover) {
+  .tree__node-content:hover {
+    background-color: var(--hover-color);
+    border-radius: 4px
+  }
 }
+
 
 .tree__node-content_empty {
-  padding-left: 23px;
+  padding-left: 26px;
 }
 
 .tree__node-arrow {
+  flex-shrink: 0;
   width: 14px;
   height: 14px;
   color: var(--color);

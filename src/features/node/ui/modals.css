@@ -4,6 +4,17 @@
   color: var(--highlight-color)
 }
 
+@media (max-width: 425px) {
+  .modals__open-button {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.modals__delete-button {
+  color: var(--error-color);
+}
+
 .delete-node__alert {
   display: inline-block;
   margin-bottom: 8px;

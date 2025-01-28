@@ -45,6 +45,7 @@ const nodeTemplate =
             nodeName={node.name}
             deleteNode={deleteNode}
             isLoading={isDeleting}
+            isHaveChild={!!node.children && node.children.length > 0}
           />
         </div>
       </div>

@@ -4,14 +4,29 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 6px 12px 6px 0;
+}
+
+.custom-node__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .custom-node__actions {
   display: none;
 }
 
-.custom-node:hover .custom-node__actions,
 .custom-node_selected .custom-node__actions {
+  flex-shrink: 0;
   display: flex;
   gap: 4px;
+}
+
+@media (hover: hover) {
+  .custom-node:hover .custom-node__actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: 4px;
+  }
 }

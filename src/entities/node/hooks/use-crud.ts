@@ -1,14 +1,17 @@
 import { useEffect } from "react";
+
+import { useSnackbar } from "notistack";
+
 import {
   useDeleteNodesTree,
   useUpdateNodesTree,
   useCreateNodesTree,
   useGetNodesTree,
 } from "../api";
-import { enqueueSnackbar } from "notistack";
 
 const useNodes = () => {
   const treeName = "YauMal";
+  const { enqueueSnackbar } = useSnackbar();
   const [getNodes, { data: treeData, isLoading }] = useGetNodesTree();
   const [deleteNode, { isLoading: isDeleting }] = useDeleteNodesTree();
   const [createNode, { isLoading: isCreating }] = useCreateNodesTree();
@@ -16,13 +19,13 @@ const useNodes = () => {
 
   useEffect(() => {
     getNodes({ params: { treeName } }).catch(() => {
-      enqueueSnackbar(`Failed to get ${treeName} tree data`, {
+      enqueueSnackbar(`Failed to get the ${treeName} tree data`, {
         variant: "error",
       });
     });
   }, []);
 
-  const handleCreateNode = (parentId: number, nodeName: string) => {
+  const handleCreateNode = async (parentId: number, nodeName: string) => {
     if (!nodeName || nodeName.length < 3) {
       enqueueSnackbar("Node name must be longer than 3 symbols", {
         variant: "error",
@@ -31,24 +34,24 @@ const useNodes = () => {
         resolve(false);
       });
     }
-    return createNode({
-      params: { treeName, parentNodeId: parentId, nodeName },
-    })
-      .then(() => {
-        enqueueSnackbar(`Successfully create node`, {
-          variant: "success",
-        });
-        return true;
-      })
-      .catch(() => {
-        enqueueSnackbar(`Failed to create node`, {
-          variant: "error",
-        });
-        return false;
+    try {
+      await createNode({
+        params: { treeName, parentNodeId: parentId, nodeName },
       });
+      enqueueSnackbar(`Created the ${nodeName} node successfully`, {
+        variant: "success",
+      });
+      getNodes({ params: { treeName } });
+      return true;
+    } catch {
+      enqueueSnackbar(`Failed to create the ${nodeName} node`, {
+        variant: "error",
+      });
+      return false;
+    }
   };
 
-  const handleUpdateNode = (
+  const handleUpdateNode = async (
     nodeId: number,
     nodeName: string,
     newNodeName: string
@@ -64,37 +67,37 @@ const useNodes = () => {
         resolve(false);
       });
     }
-    return updateNode({
-      params: { treeName, nodeId, newNodeName },
-    })
-      .then(() => {
-        enqueueSnackbar(`Successfully update node`, {
-          variant: "success",
-        });
-        return true;
-      })
-      .catch(() => {
-        enqueueSnackbar(`Failed to update node`, {
-          variant: "error",
-        });
-        return false;
+    try {
+      await updateNode({
+        params: { treeName, nodeId, newNodeName },
       });
+      enqueueSnackbar(`Updated the node successfully`, {
+        variant: "success",
+      });
+      getNodes({ params: { treeName } });
+      return true;
+    } catch {
+      enqueueSnackbar(`Failed to update the node`, {
+        variant: "error",
+      });
+      return false;
+    }
   };
 
-  const handleDeleteNode = (nodeId: number) => {
-    return deleteNode({ params: { treeName, nodeId } })
-      .then(() => {
-        enqueueSnackbar(`Successfully delete node`, {
-          variant: "success",
-        });
-        return true;
-      })
-      .catch(() => {
-        enqueueSnackbar(`Failed to delete node`, {
-          variant: "error",
-        });
-        return false;
+  const handleDeleteNode = async (nodeId: number) => {
+    try {
+      await deleteNode({ params: { treeName, nodeId } });
+      enqueueSnackbar(`Deleted the node successfully`, {
+        variant: "success",
       });
+      getNodes({ params: { treeName } });
+      return true;
+    } catch {
+      enqueueSnackbar(`Failed to delete the node`, {
+        variant: "error",
+      });
+      return false;
+    }
   };
 
   return {

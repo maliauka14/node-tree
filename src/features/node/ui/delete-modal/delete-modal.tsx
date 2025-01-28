@@ -1,6 +1,7 @@
-import { FC, useState } from "react";
+import { FC, useState, MouseEvent } from "react";
 
 import { MdDeleteOutline } from "react-icons/md";
+import { useSnackbar } from "notistack";
 
 import { Button } from "../../../../shared/ui/button";
 import { Modal } from "../../../../shared/ui/modal";
@@ -13,11 +14,18 @@ export const DeleteModal: FC<IDeleteModalProps> = ({
   id,
   deleteNode,
   isLoading,
+  isHaveChild,
 }) => {
   const [open, setOpen] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
-  const handleOpenModal = () => {
-    setOpen(true);
+  const handleOpenModal = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (isHaveChild) {
+      enqueueSnackbar("You have to delete all children nodes first", {
+        variant: "info",
+      });
+    } else setOpen(true);
   };
 
   const handleDeleteNode = () => {
@@ -28,7 +36,10 @@ export const DeleteModal: FC<IDeleteModalProps> = ({
 
   return (
     <>
-      <IconButton className="modals__open-button" onClick={handleOpenModal}>
+      <IconButton
+        className="modals__open-button modals__delete-button"
+        onClick={handleOpenModal}
+      >
         <MdDeleteOutline />
       </IconButton>
       <Modal

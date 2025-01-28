@@ -9,6 +9,7 @@ export interface IDeleteModalProps {
   id: number;
   deleteNode: (nodeId: number) => Promise<unknown>;
   isLoading: boolean;
+  isHaveChild: boolean;
 }
 export interface IRenameModalProps {
   nodeName: string;

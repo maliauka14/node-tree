@@ -1,6 +1,6 @@
 #root {
   color: var(--color);
-  font-family: Inter
+  font-family: Inter, sans-serif
 }
 
 .form {

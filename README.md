@@ -6,11 +6,12 @@ You need to use the existing Swagger documentation to learn the server API. Afte
 
 - For requests, it was decided to use Axios. Based on it, a function was created that returns a custom hook. Since each operation uses POST for requests, useEffect had to be used. However, a solution for GET requests was also created.
 - The FSD (Feature-Sliced Design) architecture was chosen.
-- During the work, 7 components were created.
+- During the work, 7 UI components were created.
 - For status display, the ready-made solution from notistack was used.
 - The react-icons library was chosen for the icons.
 
-Возможности для улучшения
-покрытие тестами
-валидация данных с помощью react-hook-form для отправляемых и zod для принимаемых
-переместить вывод ошибки при запросе в интерсептор
+
+**Opportunities for Improvement:**
+- Test coverage
+- Data validation using `react-hook-form` for outgoing data and `zod` for incoming data
+- Move error handling for requests to an interceptor

@@ -17,7 +17,8 @@ export const CreateModal: FC<ICreateModalProps> = ({
   const formRef = useRef<HTMLFormElement>(null);
   const [open, setOpen] = useState(false);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setOpen(true);
   };
 

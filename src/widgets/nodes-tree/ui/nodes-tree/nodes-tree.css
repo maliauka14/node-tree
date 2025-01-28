@@ -28,3 +28,22 @@
   justify-content: center;
   gap: 8px;
 }
+
+
+@media (max-width: 768px) {
+  .nodes-tree {
+    width: 80%;
+  }
+
+  .nodes-tree__title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 425px) {
+  .nodes-tree {
+    width: 100%;
+    padding: 0 8px;
+  }
+
+}
